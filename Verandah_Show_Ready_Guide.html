@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Show Ready Standard | Verandah Properties</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #008C82;
+    --teal-dark: #006B62;
+    --teal-light: #E6F4F3;
+    --teal-mid: #C2E4E1;
+    --gold: #D4AF50;
+    --gold-light: #FBF5E0;
+    --red: #C4473A;
+    --red-light: #FDF2F1;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --muted: #7A7A7A;
+    --border: #E8E4DC;
+    --bg: #FAFAF7;
+    --white: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.7; font-size: 15px; }
+
+  /* ── HEADER ── */
+  .header { background: var(--dark); padding: 64px 60px 52px; position: relative; overflow: hidden; }
+  .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold), var(--teal)); }
+  .header::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 30%, rgba(0,140,130,.12) 0%, transparent 60%); pointer-events: none; }
+  .header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; position: relative; }
+  .header-tagline { font-size: 12px; color: rgba(255,255,255,.4); font-style: italic; margin-bottom: 24px; position: relative; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 5vw, 58px); font-weight: 300; color: var(--white); line-height: 1.12; max-width: 700px; margin-bottom: 20px; position: relative; }
+  .header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-size: 16px; color: rgba(255,255,255,.6); max-width: 560px; line-height: 1.7; position: relative; }
+
+  /* ── BRAND STATEMENT BAND ── */
+  .brand-band { background: var(--teal-dark); padding: 28px 60px; position: relative; }
+  .brand-band::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--gold); }
+  .brand-band p { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--white); line-height: 1.55; font-style: italic; max-width: 780px; }
+  .brand-band strong { font-weight: 600; color: var(--gold); font-style: normal; }
+
+  /* ── MAIN ── */
+  .main { max-width: 900px; margin: 0 auto; padding: 64px 40px 100px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 60px; }
+  .section-label { font-size: 10px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--teal-mid); }
+
+  /* ── BODY TEXT ── */
+  .body-text { font-size: 15px; color: var(--mid); line-height: 1.85; margin-bottom: 24px; }
+  .body-text strong { color: var(--dark); font-weight: 500; }
+
+  /* ── WHY IT MATTERS ── */
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 28px 0; }
+  .why-card { background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--teal); padding: 24px 22px; border-radius: 0 0 4px 4px; }
+  .why-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--teal); line-height: 1; margin-bottom: 12px; }
+  .why-title { font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 8px; line-height: 1.4; }
+  .why-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  /* ── CALLOUT DARK ── */
+  .callout-dark { background: var(--dark); border-radius: 4px; padding: 36px 40px; margin: 32px 0; position: relative; overflow: hidden; }
+  .callout-dark::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); }
+  .callout-dark .cd-label { font-size: 10px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .callout-dark p { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 300; color: var(--white); line-height: 1.6; font-style: italic; }
+
+  /* ── CALLOUT TEAL ── */
+  .callout-teal { background: var(--teal-light); border-left: 3px solid var(--teal); border-radius: 0 4px 4px 0; padding: 24px 28px; margin: 24px 0; }
+  .callout-teal .ct-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 10px; }
+  .callout-teal p { font-size: 14px; color: var(--teal-dark); line-height: 1.75; }
+
+  /* ── CALLOUT RED ── */
+  .callout-red { background: var(--red-light); border-left: 3px solid var(--red); border-radius: 0 4px 4px 0; padding: 24px 28px; margin: 24px 0; }
+  .callout-red .cr-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .callout-red p { font-size: 14px; color: #6B2F2A; line-height: 1.75; }
+
+  /* ── CHECKLIST SECTION ── */
+  .checklist-wrap { background: var(--white); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin: 24px 0; }
+  .checklist-header { background: var(--dark); padding: 18px 28px; display: flex; align-items: center; gap: 14px; }
+  .checklist-header .ch-icon { font-size: 22px; }
+  .checklist-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--white); }
+  .checklist-header .ch-badge { margin-left: auto; font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; background: var(--gold); color: var(--dark); padding: 4px 12px; border-radius: 20px; }
+  .checklist-body { padding: 0 28px; }
+  .checklist-cat { padding: 20px 0 8px; border-bottom: 1px solid var(--border); }
+  .checklist-cat:last-child { border-bottom: none; }
+  .checklist-cat-title { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+  .checklist-items { list-style: none; }
+  .checklist-items li { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,.04); font-size: 14px; color: var(--mid); line-height: 1.6; }
+  .checklist-items li:last-child { border-bottom: none; }
+  .checklist-items li::before { content: '✓'; color: var(--teal); font-weight: 600; flex-shrink: 0; margin-top: 1px; font-size: 13px; }
+  .checklist-items li strong { color: var(--dark); font-weight: 500; }
+
+  /* ── CONSEQUENCE COMPARE ── */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .compare-card { border-radius: 4px; padding: 28px 26px; }
+  .compare-card.no { background: var(--red-light); border: 1px solid #FECACA; }
+  .compare-card.yes { background: var(--teal-light); border: 1px solid var(--teal-mid); }
+  .compare-title { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 16px; }
+  .compare-card.no .compare-title { color: var(--red); }
+  .compare-card.yes .compare-title { color: var(--teal-dark); }
+  .compare-list { list-style: none; }
+  .compare-list li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; font-size: 13px; line-height: 1.6; border-bottom: 1px solid rgba(0,0,0,.06); }
+  .compare-list li:last-child { border-bottom: none; }
+  .compare-card.no .compare-list li { color: #6B2F2A; }
+  .compare-card.yes .compare-list li { color: var(--teal-dark); }
+  .compare-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+
+  /* ── STANDARD STATEMENT ── */
+  .standard-block { background: var(--gold-light); border: 1px solid #E5D080; border-radius: 4px; padding: 36px 40px; margin: 32px 0; text-align: center; }
+  .standard-block .sb-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: #78350F; margin-bottom: 16px; }
+  .standard-block h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: var(--dark); line-height: 1.35; margin-bottom: 16px; }
+  .standard-block h2 em { font-style: italic; color: var(--teal-dark); }
+  .standard-block p { font-size: 14px; color: var(--mid); line-height: 1.8; max-width: 580px; margin: 0 auto; }
+
+  /* ── DIVIDER ── */
+  .divider { display: flex; align-items: center; gap: 16px; margin: 52px 0; }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-mark { font-size: 14px; color: var(--gold); }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--dark); padding: 36px 60px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--white); }
+  .footer-brand span { color: var(--gold); }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 4px; font-style: italic; }
+  .footer-info { text-align: right; font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.9; }
+  .footer-info a { color: var(--gold); text-decoration: none; }
+
+  @media(max-width:640px){
+    .header, .brand-band, .footer { padding-left: 24px; padding-right: 24px; }
+    .main { padding: 40px 20px 80px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-info { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-eyebrow">Verandah Properties · Owner Education</div>
+  <div class="header-tagline">Curating Lake Nona's Finest Rental Portfolio</div>
+  <h1>The Show Ready Standard.<br><em>Why it changes everything.</em></h1>
+  <p class="header-sub">Before a single tenant walks through your door, before a single photo is taken, before a single day of marketing begins — your property must be show ready. This is not a preference. It is the foundation of every great outcome we deliver.</p>
+</div>
+
+<!-- BRAND BAND -->
+<div class="brand-band">
+  <p>Verandah Properties manages a <strong>curated portfolio</strong> of rental homes in the Lake Nona and St. Cloud corridor. Every property we represent carries our name — and our name stands for a standard. Show ready is not the last step before listing. <strong>It is the first step toward the outcome you deserve.</strong></p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- WHY IT MATTERS -->
+  <div class="section">
+    <div class="section-label">Why Show Ready Is the Most Important Step of All</div>
+
+    <p class="body-text">The rental market is a visual, emotional, and competitive experience for tenants. The best applicants — the ones with strong credit, stable income, excellent rental history, and genuine respect for a home — have options. They are comparing your property to others. They make their decision quickly. And the condition of a property at the time of showing is the single most powerful factor in whether they apply or move on.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div class="why-title">First impressions are permanent — and they happen online</div>
+        <div class="why-desc">Before a tenant ever sets foot in your home, they have already judged it. Professional photos of a show-ready property create the emotional connection that drives applications. Photos of an unprepared property drive the scroll.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div class="why-title">Qualified tenants self-select based on what they see</div>
+        <div class="why-desc">A well-presented home attracts applicants who take pride in where they live. A neglected or unready home attracts applicants who either don't notice or don't care — and neither of those is the tenant you want.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div class="why-title">The condition of the property communicates your standards</div>
+        <div class="why-desc">When you present a home with care and attention to detail, you are telling every prospective tenant: this is how this home is maintained. That signal attracts tenants who will maintain it the same way.</div>
+      </div>
+    </div>
+
+    <div class="callout-dark">
+      <div class="cd-label">The Verandah Principle</div>
+      <p>"You can rent a property that is not fully show ready. But we can assure you — it will not be to a highly qualified tenant. The standard of what you present is the standard of who applies. Every time, without exception. This is 20+ years of pattern recognition speaking."</p>
+    </div>
+  </div>
+
+  <!-- WHAT SHOW READY MEANS -->
+  <div class="section">
+    <div class="section-label">What Show Ready Actually Means</div>
+
+    <p class="body-text">Show ready means a prospective tenant can walk through your property and genuinely picture themselves moving in <strong>that day.</strong> Not next month after some work is done. Not after the carpets are cleaned. That day. Every detail communicates something — and the details we ask you to address are not arbitrary. Each one directly impacts the quality of tenant who applies.</p>
+
+    <!-- INTERIOR -->
+    <div class="checklist-wrap">
+      <div class="checklist-header">
+        <span class="ch-icon">🏠</span>
+        <h3>Interior — Every Room, Every Detail</h3>
+        <span class="ch-badge">Non-Negotiable</span>
+      </div>
+      <div class="checklist-body">
+
+        <div class="checklist-cat">
+          <div class="checklist-cat-title">Cleanliness</div>
+          <ul class="checklist-items">
+            <li><strong>Professional deep clean throughout</strong> — not a tidy, a thorough professional clean. Every surface, every corner, every appliance inside and out.</li>
+            <li>All personal items and belongings completely removed from the home and garage</li>
+            <li>All walls, doors, and baseboards wiped down — pay attention to light switches, hallways, and doorframes</li>
+            <li>All ceiling fans and light fixtures cleaned — dust accumulation shows immediately in photos</li>
+            <li>All windows, window sills, and blinds cleaned — screens secured and intact</li>
+            <li>All bathrooms cleaned and disinfected to a hotel standard</li>
+            <li>New A/C filter installed — a small detail that signals attentive maintenance</li>
+          </ul>
+        </div>
+
+        <div class="checklist-cat">
+          <div class="checklist-cat-title">Flooring</div>
+          <ul class="checklist-items">
+            <li><strong>Carpet professionally cleaned</strong> if in good condition — or replaced if worn, stained, or more than a few years old</li>
+            <li>All tile and vinyl mopped and free of stains and scuff marks</li>
+            <li>Hard flooring with minimal wear and tear — no excessive scratching</li>
+            <li>Wood flooring with clean grout lines and no deep gouges or damage</li>
+          </ul>
+        </div>
+
+        <div class="checklist-cat">
+          <div class="checklist-cat-title">Paint & Walls</div>
+          <ul class="checklist-items">
+            <li><strong>Fresh neutral paint throughout</strong> — bold or personal color choices limit the tenant's ability to see themselves in the space</li>
+            <li>No scuffs, marks, nail holes, or visible touch-up patches</li>
+            <li>Consistent finish — no mismatched paint sheens between walls and trim</li>
+          </ul>
+        </div>
+
+        <div class="checklist-cat">
+          <div class="checklist-cat-title">Kitchen & Bathrooms</div>
+          <ul class="checklist-items">
+            <li><strong>Kitchen and bathrooms updated within the past 5 years</strong> — or presenting fixtures and finishes that feel current and well-maintained</li>
+            <li>All appliances clean, functioning, and matching in color — or stainless steel</li>
+            <li>No dripping faucets, running toilets, or broken hardware of any kind</li>
+            <li>Updated light fixtures and plumbing fixtures — dated brass or builder-basic hardware reads as neglect to a qualified tenant</li>
+            <li>Clean grout lines in tile — discolored or cracked grout is one of the most common reasons tenants pass on a property</li>
+          </ul>
+        </div>
+
+        <div class="checklist-cat">
+          <div class="checklist-cat-title">General Functionality</div>
+          <ul class="checklist-items">
+            <li>All fixtures, doors, locks, and windows functioning as intended — no sticky doors, broken locks, or jammed windows</li>
+            <li>All light bulbs working — every single one. A dark room in a showing reads as a problem</li>
+            <li>Window blinds installed, clean, and fully operational throughout</li>
+            <li>All noticeable damages repaired or replaced — we assess what matters most during our walk-through</li>
+            <li>Garage clean and free of personal items — garage space is a major selling point and should look like one</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXTERIOR -->
+    <div class="checklist-wrap">
+      <div class="checklist-header">
+        <span class="ch-icon">🌿</span>
+        <h3>Exterior — The First Thing They See</h3>
+        <span class="ch-badge">Non-Negotiable</span>
+      </div>
+      <div class="checklist-body">
+
+        <div class="checklist-cat">
+          <div class="checklist-cat-title">Lawn & Landscaping</div>
+          <ul class="checklist-items">
+            <li><strong>Lawn mowed, trimmed, and edged</strong> — a clean lawn line signals that this property is cared for</li>
+            <li>Irrigation set to automatic — the lawn should be actively maintained, not just cut once</li>
+            <li>All beds weeded and fresh mulch applied where appropriate</li>
+            <li>Dead or overgrown plants removed or replaced — a neglected landscape is the first impression and it sets the tone for everything that follows</li>
+          </ul>
+        </div>
+
+        <div class="checklist-cat">
+          <div class="checklist-cat-title">Exterior Surfaces</div>
+          <ul class="checklist-items">
+            <li><strong>Power wash all exterior surfaces</strong> if needed — in Florida, mold and mildew accumulate quickly and show prominently in photos</li>
+            <li>Driveway and walkways clean and free of oil stains or debris</li>
+            <li>Repair or replace any damaged or missing screens — for all windows, porches, or pool enclosures</li>
+            <li>Check for and repair any trip hazards on walkways or entry areas</li>
+          </ul>
+        </div>
+
+        <div class="checklist-cat">
+          <div class="checklist-cat-title">Pool & Patio</div>
+          <ul class="checklist-items">
+            <li><strong>Pool clean, balanced, and blue</strong> — a green pool is a deal-breaker. Period.</li>
+            <li>All patio and outdoor furniture removed or neatly arranged — no personal items, no clutter</li>
+            <li>Screened enclosure clean and free of tears or damage</li>
+            <li>All outdoor personal items and trash fully removed from the property</li>
+          </ul>
+        </div>
+
+        <div class="checklist-cat">
+          <div class="checklist-cat-title">Final Handover Details</div>
+          <ul class="checklist-items">
+            <li>All manuals, extra keys (labeled), gate cards, pool keys, recreation cards, and remotes left on the kitchen counter for Verandah</li>
+            <li><strong>Provide all keys needed to enter the property</strong> — including any community access cards, garage remotes, mailbox keys, and amenity keys</li>
+            <li>All utilities active in owner's name while vacant — electricity and water must be on for showings</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- THE CONSEQUENCE OF NOT -->
+  <div class="section">
+    <div class="section-label">The Consequence of Not Being Show Ready</div>
+    <p class="body-text">This is not about perfectionism. It is about outcomes. Here is what the data and experience tell us about what happens when a property is listed before it is truly show ready — versus what happens when it is.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card no">
+        <div class="compare-title">🔴 Not Show Ready — What Happens</div>
+        <ul class="compare-list">
+          <li><span class="compare-icon">⬇</span>Qualified tenants view the property and pass — they move on to a better-presented option</li>
+          <li><span class="compare-icon">⬇</span>Extended days on market — Zillow's algorithm deprioritizes listings that sit</li>
+          <li><span class="compare-icon">⬇</span>Price reductions required to attract applicants who overlook condition</li>
+          <li><span class="compare-icon">⬇</span>Lower-quality applicant pool — those with fewer options accept what qualified tenants reject</li>
+          <li><span class="compare-icon">⬇</span>Higher risk of maintenance issues, lease disputes, and difficult tenancy outcomes</li>
+          <li><span class="compare-icon">⬇</span>Your investment is not protected — it is exposed</li>
+        </ul>
+      </div>
+      <div class="compare-card yes">
+        <div class="compare-title">✅ Show Ready — What Happens</div>
+        <ul class="compare-list">
+          <li><span class="compare-icon">⬆</span>Strong qualified applicant pool from day one — the first 7–10 days drive the best traffic</li>
+          <li><span class="compare-icon">⬆</span>Faster lease-up — a show-ready property leases 2–3x faster than an unprepared one</li>
+          <li><span class="compare-icon">⬆</span>Full asking rent achieved — qualified tenants pay the price; desperate tenants negotiate</li>
+          <li><span class="compare-icon">⬆</span>Higher-caliber tenant who maintains the property at the standard it was presented</li>
+          <li><span class="compare-icon">⬆</span>Lower maintenance calls and incidents throughout the tenancy</li>
+          <li><span class="compare-icon">⬆</span>Your investment is actively protected — from day one</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout-red">
+      <div class="cr-label">⚠ The Cost of Vacancy Days</div>
+      <p>Every day a property sits vacant because it was not ready to show is a day of rental income that cannot be recovered. On a $2,500/month property, each day of unnecessary vacancy costs approximately <strong>$83</strong>. Preparing the property properly before listing is almost always the faster and more financially sound path — not the slower one.</p>
+    </div>
+  </div>
+
+  <!-- OUR ROLE -->
+  <div class="section">
+    <div class="section-label">Your Responsibility. Our Support.</div>
+
+    <p class="body-text">The show-ready standard is the owner's responsibility — and we are straightforward about that from the beginning. You know your property, you have access to it, and you are best positioned to get it prepared. What we bring is guidance, clarity, and a trusted vendor network if you need it.</p>
+
+    <p class="body-text">If you need help finding reliable vendors — cleaners, painters, flooring specialists, landscapers, handymen — we are happy to connect you with the professionals in our network who know our standard. We do not manage the work on your behalf during the preparation phase, but we make sure you are never left trying to figure it out alone.</p>
+
+    <div class="callout-teal">
+      <div class="ct-label">✅ How the Confirmation Process Works</div>
+      <p>Once you believe the property is show-ready, our New Client Liaison will visit the property in person to confirm it meets our standard before photography is ordered and the listing goes live. If everything is in order — we move immediately. If there is something minor outstanding — a final clean, a carpet clean, a small touch-up — we will take care of it on your behalf prior to move-in so the property is presented at its absolute best. The goal is always a seamless, fast transition from ready to rented.</p>
+    </div>
+  </div>
+
+  <!-- BRAND STATEMENT -->
+  <div class="section">
+    <div class="section-label">Our Brand. Our Standard. Your Outcome.</div>
+
+    <div class="standard-block">
+      <div class="sb-eyebrow">Verandah Properties · Lake Nona & St. Cloud</div>
+      <h2>We manage <em>curated rentals.</em><br>Not just any property. The right ones.</h2>
+      <p>Every property in the Verandah portfolio is here because it meets a standard — and that standard is what makes it possible for us to attract and place the caliber of tenant that protects your investment and delivers the outcomes you are hoping for. Show ready is not the bar we set because we are difficult. It is the bar we set because it works. Twenty years of data, thousands of placements, and a track record built entirely in this corridor tells us so.</p>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-mark">✦</div><div class="divider-line"></div></div>
+
+  <div class="callout-dark">
+    <div class="cd-label">From Pamela Syvertson — Owner & Broker, Verandah Properties</div>
+    <p>"The show ready standard is not about aesthetics. It is about outcomes. The tenant who walks into a beautifully presented home and says 'I can see myself here' — that is the tenant who applies, qualifies, signs, pays on time, and takes care of your property. That is the tenant we are working to find for you. Show ready is how we start that process on the right foot — and in 20+ years, it has never let us down."</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div class="footer-brand">Verandah <span>Properties</span>, LLC</div>
+    <div class="footer-tagline">Curating Lake Nona's Finest Rental Portfolio</div>
+  </div>
+  <div class="footer-info">
+    Pamela Syvertson · Owner & Broker<br>
+    <a href="tel:4074155478">(407) 415-5478</a> · <a href="mailto:pamela@verandahproperties.com">pamela@verandahproperties.com</a><br>
+    <a href="https://www.verandahproperties.com">verandahproperties.com</a>
+  </div>
+</div>
+
+</body>
+</html>
